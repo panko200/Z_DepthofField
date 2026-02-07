@@ -17,7 +17,7 @@ namespace Z_DepthofField
     [VideoEffect("Z軸被写界深度", ["描画"], ["Z-DoF", "被写界深度", "ぼけ","ボケ"])]
     public class Z_DepthofFieldEffect : VideoEffectBase
     {
-        public override string Label => "Z-軸被写界深度";
+        public override string Label => "Z軸被写界深度";
 
         [Display(GroupName = "基本設定", Name = "ぼかしの種類", Description = "ガウスぼかしかレンズぼかしかを選べます。")]
         [EnumComboBox]
@@ -28,6 +28,11 @@ namespace Z_DepthofField
         [EnumComboBox]
         public FocusMode Mode { get => mode; set => Set(ref mode, value); }
         private FocusMode mode = FocusMode.Planar;
+
+        [Display(GroupName = "基本設定", Name = "サイズ固定", Description = "ONにすると、ぼかしてもアイテムの大きさが変わりません（端が透けるのを防ぎます）。")]
+        [ToggleSlider]
+        public bool FixSize { get => fixSize; set => Set(ref fixSize, value); }
+        private bool fixSize = false;
 
         [Display(GroupName = "ピント設定", Name = "ピント距離", Description = "カメラからの距離です。YMM4の標準では、アイテムとカメラの距離は1000あるので、\n1000を標準としています。")]
         [AnimationSlider("F0", "px", 0, 5000)]
